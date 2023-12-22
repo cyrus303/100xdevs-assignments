@@ -7,9 +7,9 @@
 
 function findLargestElement(numbers) {
   let max = numbers[0];
-  numbers.slice(1).map((ele) => {
-    ele > max ? (max = ele) : null;
-  });
+  for (i = 1; i < numbers.length; i++) {
+    max = Math.max(max, numbers[i]);
+  }
   return max;
 }
 
