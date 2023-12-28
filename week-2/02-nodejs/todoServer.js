@@ -46,9 +46,16 @@ const app = express();
 
 let todoList = [
   {
-    id: '1',
+    id: 1,
     title: 'title',
     description: 'desc',
+    completed: false,
+  },
+  {
+    id: 2,
+    title: 'title',
+    description: 'desc',
+    completed: false,
   },
 ];
 
@@ -62,7 +69,7 @@ app.get('/todos/:id', (request, response) => {
   const {id} = request.params;
 
   const todo = todoList.find((todo) => {
-    return todo.id === id;
+    return todo.id === parseInt(id);
   });
 
   if (todo) {
@@ -72,7 +79,58 @@ app.get('/todos/:id', (request, response) => {
   }
 });
 
-app.listen(3000, function (err) {
+app.post('/todos', (request, response) => {
+  const {body} = request;
+  body.id = Math.floor(Math.random() * 1000000);
+  todoList.push(body);
+  response.send({id: body.id});
+});
+
+app.put('/todos/:id', (request, response) => {
+  const {id} = request.params;
+  const {body} = request;
+
+  const todoIndex = todoList.findIndex(
+    (singleTodo) => singleTodo.id === parseInt(id)
+  );
+
+  if (todoIndex === -1) {
+    return response.status(404).send('Todo not found');
+  }
+
+  const todo = todoList[todoIndex];
+
+  todo.title = body.title || todo.title;
+  todo.description = body.description || todo.description;
+  todo.completed =
+    body.completed !== undefined ? body.completed : todo.completed;
+
+  todoList[todoIndex] = todo;
+
+  response.sendStatus(200);
+});
+
+app.delete('/todos/:id', (request, response) => {
+  const {id} = request.params;
+  const todoIndex = todoList.findIndex(
+    (singleTodo) => singleTodo.id === parseInt(id)
+  );
+
+  if (todoIndex === -1) {
+    return response.status(404).send('Todo not found');
+  }
+
+  if (todoIndex >= 0 && todoIndex < todoList.length) {
+    todoList.splice(todoIndex, 1);
+  }
+  response.send(200);
+});
+
+app.all('*', (req, res) => {
+  res.status(404).send('Route not found');
+});
+
+app.listen(3000, (err) => {
   if (err) console.log('Error in server setup');
   console.log('Server listening on Port', 3000);
 });
