@@ -13,15 +13,33 @@ const app = express();
 
 let numberOfRequestsForUser = {};
 setInterval(() => {
-    numberOfRequestsForUser = {};
-}, 1000)
+  numberOfRequestsForUser = {};
+}, 1000);
 
-app.get('/user', function(req, res) {
-  res.status(200).json({ name: 'john' });
+app.use('/', (request, response, next) => {
+  const userId = request.headers['user-id'];
+
+  if (!numberOfRequestsForUser['user-id']) {
+    numberOfRequestsForUser['user-id'] = 0;
+  }
+  numberOfRequestsForUser['user-id']++;
+
+  if (numberOfRequestsForUser['user-id'] > 5) {
+    response.send(404);
+  }
+  next();
 });
 
-app.post('/user', function(req, res) {
-  res.status(200).json({ msg: 'created dummy user' });
+app.get('/user', function (req, res) {
+  res.status(200).json({name: 'john'});
 });
+
+app.post('/user', function (req, res) {
+  res.status(200).json({msg: 'created dummy user'});
+});
+
+// app.listen(3000, () => {
+//   console.log('app running in 3000');
+// });
 
 module.exports = app;
