@@ -18,8 +18,14 @@ const UserSchema = new mongoose.Schema({
   // Schema definition here
 });
 
+// { title: 'course title', description: 'course description', price: 100, imageLink: 'https://linktoimage.com' }
 const CourseSchema = new mongoose.Schema({
   // Schema definition here
+  title: String,
+  description: String,
+  price: Number,
+  imageLink: String,
+  published: Boolean,
 });
 
 const Admin = mongoose.model('Admin', AdminSchema);
