@@ -26,39 +26,46 @@ router.get('/courses', async (req, res) => {
   res.send(courses);
 });
 
-router.post('/courses/:courseId', userMiddleware, (req, res) => {
-  // Implement course purchase logic
+router.post(
+  '/courses/:courseId',
+  userMiddleware,
+  async (req, res) => {
+    // Implement course purchase logic
     const courseId = req.params.courseId;
     const username = req.headers.username;
 
-    await User.updateOne({
-        username: username
-    }, {
-        "$push": {
-            purchasedCourses: courseId
-        }
-    })
+    await User.updateOne(
+      {
+        username: username,
+      },
+      {
+        $push: {
+          purchasedCourses: courseId,
+        },
+      }
+    );
     res.json({
-        message: "Purchase complete!"
-    })
-});
+      message: 'Purchase complete!',
+    });
+  }
+);
 
-router.get('/purchasedCourses', userMiddleware, (req, res) => {
+router.get('/purchasedCourses', userMiddleware, async (req, res) => {
   // Implement fetching purchased courses logic
-      const user = await User.findOne({
-        username: req.headers.username
-    });
+  const user = await User.findOne({
+    username: req.headers.username,
+  });
 
-    console.log(user.purchasedCourses);
-    const courses = await Course.find({
-        _id: {
-            "$in": user.purchasedCourses
-        }
-    });
+  console.log(user.purchasedCourses);
+  const courses = await Course.find({
+    _id: {
+      $in: user.purchasedCourses,
+    },
+  });
 
-    res.json({
-        courses: courses
-    })
+  res.json({
+    courses: courses,
+  });
 });
 
 module.exports = router;

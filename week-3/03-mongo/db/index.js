@@ -16,6 +16,8 @@ const AdminSchema = new mongoose.Schema({
 
 const UserSchema = new mongoose.Schema({
   // Schema definition here
+  username: String,
+  password: String,
 });
 
 // { title: 'course title', description: 'course description', price: 100, imageLink: 'https://linktoimage.com' }
