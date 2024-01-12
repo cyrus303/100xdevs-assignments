@@ -35,6 +35,7 @@ const AddDetails = ({updatePersonData}) => {
           name="name"
           value={formData.name}
           onChange={handleChange}
+          required
         />
       </label>
 
@@ -44,6 +45,7 @@ const AddDetails = ({updatePersonData}) => {
           name="description"
           value={formData.description}
           onChange={handleChange}
+          required
         />
       </label>
 
@@ -54,6 +56,7 @@ const AddDetails = ({updatePersonData}) => {
           name="interests"
           value={formData.interests}
           onChange={handleChange}
+          required
         />
       </label>
 

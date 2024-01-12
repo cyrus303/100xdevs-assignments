@@ -7,6 +7,7 @@
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+  position: relative;
 }
 
 h2 {
@@ -73,7 +74,12 @@ button {
 
 button:hover {
   background-color: #0077cc;
-
   color: #fff;
+}
 
+.close-btn{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
 }

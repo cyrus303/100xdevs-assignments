@@ -1,11 +1,13 @@
 import React from 'react';
 import Card from './Card';
 
-const InfoCards = ({personData}) => {
+const InfoCards = ({personData, deletePersonData}) => {
   return (
     <div className="card-container">
       {personData.map((element) => {
-        return <Card {...element} />;
+        return (
+          <Card data={element} deletePersonData={deletePersonData} />
+        );
       })}
     </div>
   );
