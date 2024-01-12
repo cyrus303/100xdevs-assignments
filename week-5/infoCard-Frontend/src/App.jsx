@@ -13,7 +13,8 @@ const App = () => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        'http://localhost:3000/details/users'
+        // 'http://localhost:3000/details/users'
+        'https://userdetailsbackend.onrender.com/details/users'
       );
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
@@ -27,13 +28,17 @@ const App = () => {
 
   const postUpdateData = async (data) => {
     try {
-      await fetch('http://localhost:3000/details/user', {
-        method: 'POST', // or 'PUT'
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
+      await fetch(
+        // 'http://localhost:3000/details/user'
+        'https://userdetailsbackend.onrender.com/details/user',
+        {
+          method: 'POST', // or 'PUT'
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        }
+      );
     } catch (error) {
       console.error('Error posting data:', error.message);
     }
@@ -41,13 +46,17 @@ const App = () => {
 
   const postDeleteData = async (data) => {
     try {
-      await fetch('http://localhost:3000/details/destroy', {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
+      await fetch(
+        // 'http://localhost:3000/details/destroy'
+        'https://userdetailsbackend.onrender.com/details/destory',
+        {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        }
+      );
     } catch (error) {
       console.error('Error deleting data:', error.message);
     }
