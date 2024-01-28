@@ -1,16 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+.main-div-container{
 
-*{
-  font-family: 'Poppins', sans-serif;
-}
-
-.main-container{
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
 
 .card-container{
+
   display: flex;
   justify-content: center;
 }
@@ -20,9 +16,6 @@
   border-radius: 15px;
   width: 400px;
   height: 400px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
 }
 .background {
   background-color: aqua;

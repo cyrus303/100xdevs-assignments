@@ -1,0 +1,24 @@
+.main-container{
+  height: 70vh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.pill{
+  background-color: aqua;
+  margin: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  width: 50px;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.pill-container{
+  display: flex;
+  border-radius: 10px;
+  box-shadow: 11px 13px 42px 0px rgba(0, 0, 0, 0.302);
+  background-color: rgba(204, 204, 204, 0.245);
+  margin-bottom: 2rem;
+}

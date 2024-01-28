@@ -40,7 +40,7 @@ const profiles = [
 const ProfileCard = () => {
   return (
     <>
-      <div className="main-container">
+      <div className="main-div-container">
         {/* <div className="next">
           <button>Profile</button>
         </div> */}
