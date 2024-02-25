@@ -1,4 +1,4 @@
-import { client } from "..";
+import {client} from '..';
 
 /*
  * Should insert into the users table
@@ -9,8 +9,26 @@ import { client } from "..";
  *   name: string
  * }
  */
-export async function createUser(username: string, password: string, name: string) {
-    
+export async function createUser(
+  username: string,
+  password: string,
+  name: string
+) {
+  try {
+    const query = `
+    INSERT INTO users (username, password, name)
+    VALUES ($1,$2,$3)
+    `;
+    const result = await client.query(query, [
+      'testing',
+      'testing',
+      'test',
+    ]);
+    console.log(result);
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 /*
@@ -21,6 +39,4 @@ export async function createUser(username: string, password: string, name: strin
  *   name: string
  * }
  */
-export async function getUser(userId: number) {
-    
-}
+export async function getUser(userId: number) {}
